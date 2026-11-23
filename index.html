@@ -1,12 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>Gundem Cebinde</title></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gundem Cebinde — Short-Form News Publishing Platform</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #181b22;
+      --border: #2a2f3d;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #fe2c55;
+      --accent-hover: #e0244a;
+      --cyan: #25f4ee;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-badge {
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.9rem;
+    }
+    nav a:hover { color: var(--text); }
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    .hero {
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 40px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .hero p {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 28px;
+      font-size: 1.05rem;
+    }
+    .btn-tiktok {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-tiktok:hover { background: var(--accent-hover); }
+    .status-box {
+      display: none;
+      margin-top: 24px;
+      padding: 16px;
+      background: rgba(37, 244, 238, 0.08);
+      border: 1px solid var(--cyan);
+      border-radius: 8px;
+      text-align: left;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.9rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .card h3 { margin-bottom: 10px; font-size: 1.1rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; }
+    section.legal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    section.legal h2 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    section.legal h4 {
+      margin-top: 16px;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #e5e7eb;
+    }
+    section.legal p, section.legal li {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+    }
+    section.legal ul { padding-left: 20px; }
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
 <body>
-  <h1>Gundem Cebinde</h1>
-  <p>Automated short-form news video publishing tool for content creators.</p>
-  <ul>
-    <li><a href="terms.html">Terms of Service</a></li>
-    <li><a href="privacy.html">Privacy Policy</a></li>
-  </ul>
+
+<header>
+  <div class="logo">
+    <span>Gundem Cebinde</span>
+    <span class="logo-badge">Creator Studio</span>
+  </div>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#terms">Terms of Service</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Automated Vertical News Publishing for Creators</h1>
+    <p>
+      Gundem Cebinde is a web-based content management and publishing workflow designed for digital news publishers. Connect your TikTok account to upload, format, and directly publish 9:16 vertical news bulletins.
+    </p>
+    <button class="btn-tiktok" onclick="connectTikTok()">
+      Connect with TikTok
+    </button>
+
+    <div id="authStatus" class="status-box">
+      <strong>TikTok Account Connected Successfully</strong><br>
+      <span id="authDetails"></span>
+    </div>
+  </div>
+
+  <div id="features" class="grid">
+    <div class="card">
+      <h3>1. Secure OAuth2 Login</h3>
+      <p>Authenticate seamlessly with TikTok Login Kit (<code>user.info.basic</code>) without ever sharing your account password.</p>
+    </div>
+    <div class="card">
+      <h3>2. Direct Video Upload</h3>
+      <p>Upload vertical MP4 news briefings directly to your profile using TikTok Content Posting API (<code>video.upload</code>, <code>video.publish</code>).</p>
+    </div>
+    <div class="card">
+      <h3>3. Full Creator Control</h3>
+      <p>Customize video titles, hashtags, AI-generated content disclosures, and audience privacy settings prior to every publication.</p>
+    </div>
+  </div>
+
+  <section id="privacy" class="legal">
+    <h2>Privacy Policy</h2>
+    <p><strong>Last Updated:</strong> November 2026</p>
+    <p>Gundem Cebinde ("we", "our", or "us") respects your privacy and is committed to protecting the data you share when connecting your TikTok account to our publishing tool.</p>
+    <h4>1. Information We Access</h4>
+    <ul>
+      <li><strong>Basic Profile Information (<code>user.info.basic</code>):</strong> Used strictly to display your connected TikTok account identity within your publishing session.</li>
+      <li><strong>Content Publishing Permissions (<code>video.upload</code>, <code>video.publish</code>):</strong> Used solely to transmit video files and metadata (titles, privacy levels) that you explicitly authorize for upload.</li>
+    </ul>
+    <h4>2. Data Storage & Security</h4>
+    <p>OAuth access and refresh tokens are stored securely in encrypted local/server environment configurations solely to execute scheduled publishing tasks on your behalf. We never sell, rent, or share your TikTok data or tokens with third parties.</p>
+    <h4>3. Revoking Access</h4>
+    <p>You may revoke Gundem Cebinde's access at any time directly from your TikTok mobile app under <em>Settings and privacy &gt; Security &gt; Manage app permissions</em>.</p>
+  </section>
+
+  <section id="terms" class="legal">
+    <h2>Terms of Service</h2>
+    <p><strong>Last Updated:</strong> November 2026</p>
+    <h4>1. Acceptance of Terms</h4>
+    <p>By accessing or using Gundem Cebinde (<code>digidashlaboratory.github.io/gundemcebinde</code>), you agree to comply with these Terms of Service and TikTok's Community Guidelines and Developer Terms.</p>
+    <h4>2. User Responsibilities</h4>
+    <p>You retain full ownership and responsibility for all news videos, captions, and media published through this tool. You agree not to upload content that infringes intellectual property rights or violates applicable laws.</p>
+    <h4>3. Service Availability</h4>
+    <p>Gundem Cebinde operates via official TikTok APIs and may be updated or modified to maintain compatibility with platform requirements.</p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2026 Gundem Cebinde &bull; Digital News Automation Tool &bull; Contact: digidashlaboratory@gmail.com
+</footer>
+
+<script>
+  // Sandbox Client Key (Onay sonrası Production Client Key ile güncellenebilir)
+  const CLIENT_KEY = "sbawrv3ki6xds3t38z";
+  const REDIRECT_URI = "https://digidashlaboratory.github.io/gundemcebinde/";
+
+  function connectTikTok() {
+    const params = new URLSearchParams({
+      client_key: CLIENT_KEY,
+      scope: "user.info.basic,video.publish,video.upload",
+      response_type: "code",
+      redirect_uri: REDIRECT_URI,
+      state: "gc_web_auth"
+    });
+    window.location.href = "https://www.tiktok.com/v2/auth/authorize/?" + params.toString();
+  }
+
+  // TikTok'tan yönlendirme ile dönüldüğünde ekranda onay mesajı ve kodu gösterir
+  window.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get("code");
+    if (code) {
+      const box = document.getElementById("authStatus");
+      const details = document.getElementById("authDetails");
+      box.style.display = "block";
+      details.textContent = "Authorization code received and ready for publishing pipeline.";
+    }
+  });
+</script>
+
 </body>
 </html>
